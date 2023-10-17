@@ -5,7 +5,7 @@ a = Analysis(
     ['main.py'],
     pathex=[],
     binaries=[],
-    datas=[('icon\\', 'icon'), ('env\\Lib\\site-packages\\sv_ttk', 'sv_ttk')],
+    datas=[('icon\\app.ico', 'icon'), ('env\\Lib\\site-packages\\sv_ttk', 'sv_ttk')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},
@@ -21,7 +21,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='main',
+    name='NPC Combat Calculator',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -34,5 +34,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['icon/app.ico'],
-)
+    icon=['icon\\app.ico'],
+    )
