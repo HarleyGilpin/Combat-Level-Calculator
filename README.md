@@ -1,4 +1,5 @@
 ## Pixel's NPC Combat Level Calculator for RSPS
+![VCjn9NU](https://github.com/HarleyGilpin/NPC-Combat-Calculator/assets/75695035/7b7c4613-98b4-4ac4-a174-f6e2b1246ae6)
 
 ### Purpose:
 This application aids project collaborators in identifying missing NPC combat level definitions when adding NPCs to RuneScape Private Servers (RSPS).
