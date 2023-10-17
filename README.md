@@ -8,3 +8,6 @@ Combat Levels, Equipment stats, and Style bonuses are straightforward to obtain 
 
 ### Why This Tool Is Essential:
 After RuneScape's Evolution of Combat update Jagex has made certain data more accessible in its newer versions, the older revisions remain a challenge. This calculator fills that gap, providing an intuitive interface to estimate the combat levels for NPCs, ensuring a more accurate and immersive RSPS experience. Especially for those revisions where combat data was not readily available, this tool becomes a must-have for developers and contributors.
+
+### Screenshot
+![VCjn9NU](https://github.com/HarleyGilpin/NPC-Combat-Calculator/assets/75695035/7b7c4613-98b4-4ac4-a174-f6e2b1246ae6)
