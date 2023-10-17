@@ -143,7 +143,7 @@ class CombatCalculator(tk.Tk):
             self.result_label.config(text=f"Combat Level: {combat_level:.2f}")
         else:
             if stats.get('base_damage', 0) > 0 or stats.get('offensive_bonus', 0) > 0:
-                offensive_level = calculate_offensive_level(stats['base_damage'], stats['offensive_bonus'], using_aggressive_style=True)
+                offensive_level = calculate_offensive_level(stats['base_damage'], stats['offensive_bonus'])
                 selected_skill = self.prompt_offensive_skill(offensive_level)
                 if selected_skill:
                     # Set the level for the selected skill
@@ -183,18 +183,13 @@ def calculate_combat_level(stats):
     # Final step: Return the highest of melee or magic/ranged combat level
     return max(melee_combat, magic_or_ranged_combat)
 
-def calculate_offensive_level(base_damage, offensive_bonus, using_aggressive_style=False):
-    # The invisible boost to the skill level when using aggressive style.
-    aggressive_style_boost = 3 if using_aggressive_style else 1
-    
-    # Adjust the base_damage to account for the invisible boost by reverse-calculating it
-    # assuming it's already part of the base_damage, then remove it to find the original skill level.
-    adjusted_base_damage = base_damage - (aggressive_style_boost * ((offensive_bonus + 64)/640))
+def calculate_offensive_level(base_damage, offensive_bonus):
 
-    # Now calculate the skill level without the invisible boost.
-    skill_level_without_boost = (adjusted_base_damage - 0.5) / ((offensive_bonus + 64)/640)
-    
-    return skill_level_without_boost
+    # Calculate effective strength from max hit and strength bonus
+    effective_strength = (base_damage - 1.4) * 640 / ( offensive_bonus + 64)
+    # Adjusting the result to ensure that it's not less than 1
+    # Also, not applying floor here to keep the value as float
+    return max(1.0, effective_strength)  # minimum is 1
 
 def calculate_missing_levels(stats):
     desired_combat_level = stats['combat']
@@ -229,7 +224,7 @@ class OffensiveSkillDialog(tk.Toplevel):
         self.selected_skill = None
 
         # Display the calculated offensive level
-        ttk.Label(self, text=f"Calculated Offensive Level: {int(offensive_level)}").pack(pady=(10, 10))
+        ttk.Label(self, text=f"Calculated Offensive Level: {offensive_level:.2f}").pack(pady=(10, 10))
 
         ttk.Button(self, text="Strength", command=lambda: self.select_skill("strength")).pack(fill=tk.BOTH)
         ttk.Button(self, text="Ranged", command=lambda: self.select_skill("ranged")).pack(fill=tk.BOTH)
